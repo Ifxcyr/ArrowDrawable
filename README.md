@@ -4,7 +4,7 @@
 ### 使用方式:
 #### 添加依赖：
 ```
-implementation 'com.wuyr:arrowdrawable:1.0.0'
+implementation 'com.wuyr:arrowdrawable:1.0.1'
 ```
 
 ### APIs:

@@ -562,8 +562,7 @@ public class ArrowDrawable extends Drawable {
         //画箭
         drawArrow(canvas);
         //箭尾渐渐变得透明起来，直至完全透明
-        mPaint.setAlpha((int) (255 * (1 - percent)));
-        drawArrowTail(canvas);
+        drawArrowTail(canvas, (int) (255 * (1 - percent)));
         mPaint.setAlpha(255);
     }
 
@@ -627,8 +626,7 @@ public class ArrowDrawable extends Drawable {
         mArrowPath.offset(0, newArrowOffset);
         mArrowTail.offsetTo(mArrowTail.left, newArrowOffset - mFinHeight / 2);
 
-        mPaint.setAlpha((int) (255 * percent));
-        drawArrowTail(canvas);
+        drawArrowTail(canvas, (int) (255 * percent));
 
         mPaint.setAlpha(255);
         drawArrow(canvas);
@@ -705,12 +703,17 @@ public class ArrowDrawable extends Drawable {
         canvas.drawPath(mArrowPath, mPaint);
     }
 
+    private void drawArrowTail(@NonNull Canvas canvas) {
+        drawArrowTail(canvas, 255);
+    }
+
     /**
      * 画箭尾
      */
-    private void drawArrowTail(@NonNull Canvas canvas) {
+    private void drawArrowTail(@NonNull Canvas canvas, int alpha) {
         mPaint.setStyle(Paint.Style.FILL);
         mPaint.setColor(mArrowColor);
+        mPaint.setAlpha(alpha);
         mPaint.setMaskFilter(mTailMaskFilter);
 
         canvas.drawRect(mArrowTail, mPaint);
